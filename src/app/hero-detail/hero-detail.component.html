@@ -6,6 +6,14 @@
     <label for="hero-name">Hero name: </label>
     <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
   </div>
+  <div>
+    <label for="hero-dob">Hero Date Of Birth: </label>
+    <input id="hero-dob" [(ngModel)]="hero.dob" placeholder="dob">
+  </div>
+  <div>
+    <label for="hero-description">Hero description: </label>
+    <input id="hero-description" [(ngModel)]="hero.description" placeholder="description">
+  </div>
   <button type="button" (click)="save()">save</button>
 
 </div>
