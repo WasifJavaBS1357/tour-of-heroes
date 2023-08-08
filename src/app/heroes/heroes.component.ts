@@ -12,6 +12,5 @@ export class HeroesComponent {
   selectedHero?: Hero;
   onSelect(hero: Hero) {
     this.selectedHero = hero;
-    console.log(this.selectedHero.name);
   }
 }
