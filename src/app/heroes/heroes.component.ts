@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HeroService} from '../hero.service';
 import {Hero} from "../hero";
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-heroes',
@@ -25,7 +25,7 @@ export class HeroesComponent implements OnInit{
 
 
   applyForm = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('',[Validators.required]),
     dob: new FormControl(''),
     description: new FormControl('')
   });
@@ -33,7 +33,11 @@ export class HeroesComponent implements OnInit{
     let name = (this.applyForm.value.name ?? '').trim();
     let dob = (this.applyForm.value.dob ?? '').trim();
     let description = (this.applyForm.value.description ?? '').trim();
-    if (!name) { return; }
+    console.log(this.applyForm)
+    console.log(this.applyForm.value)
+    if(this.applyForm.invalid){
+      return;
+    }
     this.heroService.addHero({ name, dob, description } as Hero)
         .subscribe(hero => {
           this.heroes.push(hero);
