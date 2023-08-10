@@ -3,17 +3,20 @@
   <h2>{{hero.name | uppercase}} Details</h2>
   <div><span>id: </span>{{hero.id}}</div>
   <div>
-    <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
+    <form [formGroup]="applyForm" (submit)="saveWithReactiveFrom()">
+      <div>
+        <label for="hero-name">Hero name: </label>
+        <input id="hero-name" formControlName="name" placeholder="name">
+      </div>
+      <div>
+        <label for="hero-dob">Hero Date Of Birth: </label>
+        <input id="hero-dob" formControlName="dob" placeholder="dob">
+      </div>
+      <div>
+        <label for="hero-description">Hero description: </label>
+        <input id="hero-description" formControlName="description" placeholder="description">
+      </div>
+      <button type="submit" >save</button>
+    </form>
   </div>
-  <div>
-    <label for="hero-dob">Hero Date Of Birth: </label>
-    <input id="hero-dob" [(ngModel)]="hero.dob" placeholder="dob">
-  </div>
-  <div>
-    <label for="hero-description">Hero description: </label>
-    <input id="hero-description" [(ngModel)]="hero.description" placeholder="description">
-  </div>
-  <button type="button" (click)="save()">save</button>
-
 </div>

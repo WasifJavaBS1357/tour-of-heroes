@@ -3,6 +3,7 @@ import {Hero} from '../hero';
 import {ActivatedRoute} from "@angular/router";
 import {HeroService} from "../hero.service";
 import {Location} from '@angular/common';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-hero-detail',
@@ -22,6 +23,12 @@ export class HeroDetailComponent {
     this.getHero();
   }
 
+  applyForm = new FormGroup({
+    name: new FormControl('',[Validators.required]),
+    dob: new FormControl(''),
+    description: new FormControl('')
+  });
+
   getHero(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.heroService.getHero(id)
@@ -32,6 +39,14 @@ export class HeroDetailComponent {
       this.heroService.updateHero(this.hero)
           .subscribe(() => this.goBack());
     }
+  }
+
+  saveWithReactiveFrom(): void{
+    console.log("hello");
+    const { name, dob, description } = this.applyForm.value;
+    const id = this.hero?.id;
+    this.heroService.updateHero({ id , name, dob, description } as Hero)
+      .subscribe(() => this.goBack());
   }
   goBack(): void {
     this.location.back();
